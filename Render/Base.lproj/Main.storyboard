@@ -355,7 +355,7 @@
                                     <constraint firstAttribute="height" constant="50" id="csd-SF-z4G"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" backgroundImage="camera.circle" catalog="system">
+                                <state key="normal" image="first" backgroundImage="camera.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="ultraLight"/>
                                 </state>
                             </button>
@@ -809,5 +809,6 @@
         <image name="camera.circle" catalog="system" width="64" height="60"/>
         <image name="camera.viewfinder" catalog="system" width="64" height="56"/>
         <image name="cloud.heavyrain" catalog="system" width="64" height="62"/>
+        <image name="first" width="30" height="30"/>
     </resources>
 </document>
