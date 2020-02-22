@@ -62,27 +62,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         switch authorization.credential {
         case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            
             // Create an account in your system.
             let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
-            
             // For the purpose of this demo app, store the `userIdentifier` in the keychain.
             self.saveUserInKeychain(userIdentifier)
-            
             // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
-        
-        case let passwordCredential as ASPasswordCredential:
-        
-            // Sign in using an existing iCloud Keychain credential.
-            let username = passwordCredential.user
-            let password = passwordCredential.password
-            
-            // For the purpose of this demo app, show the password credential as an alert.
-            DispatchQueue.main.async {
-                self.showPasswordCredentialAlert(username: username, password: password)
-            }
             
         default:
             break
@@ -90,24 +74,10 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     }
     
     private func saveUserInKeychain(_ userIdentifier: String) {
-        do {
-            print(userIdentifier)
-        } catch {
-            print("Unable to save userIdentifier to keychain.")
-        }
+        print(userIdentifier)
+        print("Unable to save userIdentifier to keychain.")
     }
     
-    
-    private func showPasswordCredentialAlert(username: String, password: String) {
-        let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
-        let alertController = UIAlertController(title: "Keychain Credential Received",
-                                                message: message,
-                                                preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    /// - Tag: did_complete_error
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
     }
