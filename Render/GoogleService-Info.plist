@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>349889954293-4q1gqu30audopnilb3rfqfg7laikmpt3.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.349889954293-4q1gqu30audopnilb3rfqfg7laikmpt3</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDJkCzGY0xnA1huG3iSU_kkfhCSMhtYTms</string>
+	<key>GCM_SENDER_ID</key>
+	<string>349889954293</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hiltonbarber.Render</string>
+	<key>PROJECT_ID</key>
+	<string>personal-website-193613</string>
+	<key>STORAGE_BUCKET</key>
+	<string>personal-website-193613.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:349889954293:ios:376db5b130eb36b2c160bc</string>
+	<key>DATABASE_URL</key>
+	<string>https://personal-website-193613.firebaseio.com</string>
+</dict>
+</plist>

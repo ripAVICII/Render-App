@@ -10,11 +10,22 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
-    override func viewDidLoad() {
+     var render: Render?
+      
+      override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+        setup()
+        render?.printInfo()
+      }
+      
+      private func setup() {
+        guard let render = render else { return }
+        title = render.renderName
+        render.loadCoverPhoto { [weak self] image in
+            guard self != nil else { return }
+            print("Success")
+        }
+      }
 
 
 }
-
