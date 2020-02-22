@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-import Firebase
+import Parse
 
 
 @UIApplicationMain
@@ -18,7 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        FirebaseApp.configure()
+        
+        func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+                let parseConfig = ParseClientConfiguration {
+                    $0.applicationId = "B8Py6lspRpZUo9kIS9MR7ueYGIMCAyyoZp7jSXjl"
+                    $0.clientKey = "ZGfiOTY0v9oQK3OZ76fJwhUCK7C53eRjoOIR2D5Y"
+                    $0.server = "https://parseapi.back4app.com/"
+                }
+                Parse.initialize(with: parseConfig)
+                return true
+        }
+
         return true
     }
 
