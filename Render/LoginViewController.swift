@@ -8,6 +8,8 @@ Login view controller.
 import UIKit
 import AuthenticationServices
 import CryptoKit
+import FirebaseAuth
+import Firebase
 
 
 class LoginViewController: UIViewController {
@@ -121,18 +123,36 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
-    /// - Tag: did_complete_authorization
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-        case let appleIDCredential as ASAuthorizationAppleIDCredential:
-            // Create an account in your system.
-            let userIdentifier = appleIDCredential.user
-            // For the purpose of this demo app, store the `userIdentifier` in the keychain.
-            self.saveUserInKeychain(userIdentifier)
-            // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
-        default:
-            break
+      if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+        guard let nonce = currentNonce else {
+          fatalError("Invalid state: A login callback was received, but no login request was sent.")
         }
+        guard let appleIDToken = appleIDCredential.identityToken else {
+          print("Unable to fetch identity token")
+          return
+        }
+        guard let idTokenString = String(data: appleIDToken, encoding: .utf8) else {
+          print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
+          return
+        }
+        // Initialize a Firebase credential.
+        let credential = OAuthProvider.credential(withProviderID: "apple.com", idToken: idTokenString, rawNonce: nonce)
+        // Sign in with Firebase.
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if (error != nil) {
+            // Error. If error.code == .MissingOrInvalidNonce, make sure
+            // you're sending the SHA256-hashed nonce as a hex string with
+            // your request to Apple.
+                print(error?.localizedDescription)
+                return
+            }
+          // User is signed in to Firebase with Apple.
+          // ...
+            print("Success")
+        }
+      }
     }
     
     private func saveUserInKeychain(_ userIdentifier: String) {
